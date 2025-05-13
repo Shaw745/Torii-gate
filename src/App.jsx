@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import SuspenseLoader from "./components/SuspenseLoader";
 
-
 // Lazy-loaded pages
 const DashboardLayout = lazy(() =>
   import("./components/layout/DashboardLayout")
@@ -30,7 +29,7 @@ function App() {
           <Route path="/property/:propertyId" element={<PropertyDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route Path="/verify-email/:token" element={<VerifyEmail />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
 
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
