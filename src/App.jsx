@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import SuspenseLoader from "./components/SuspenseLoader";
 
+
 // Lazy-loaded pages
 const DashboardLayout = lazy(() =>
   import("./components/layout/DashboardLayout")
@@ -17,6 +18,7 @@ const Home = lazy(() => import("./pages/Home"));
 const HomeLoggedIn = lazy(() => import("./pages/HomeLoggedIn"));
 const PropertyDetail = lazy(() => import("./pages/PropertyDetail"));
 const Error404 = lazy(() => import("./pages/Error404"));
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path="/property/:propertyId" element={<PropertyDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route Path="/verify-email/:token" element={<VerifyEmail />} />
 
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
