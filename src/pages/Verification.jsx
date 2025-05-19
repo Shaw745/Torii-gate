@@ -1,13 +1,14 @@
 import React from "react";
 import AuthWrapper from "../components/layout/AuthWrapper";
 import { Link } from "react-router-dom";
+
 import { FaArrowLeft } from "react-icons/fa6";
 
 const Verification = () => {
   const email = localStorage.getItem("email");
-  const maskEmail = (email)=> {
-    const [start, domain] = email.split("@")
-    if( start,length<= 2){
+  const maskEmail = (email) => {
+    const [start, domain] = email.split("@");
+    if ((start, length <= 2)) {
       return `${start[0]}...@${domain}`;
     }
     return `${start.slice(0, 2)}...@${domain}`;
@@ -18,7 +19,7 @@ const Verification = () => {
       <div className="bg-white py-[29px] px-[26px] rounded-lg shadow-lg w-full lg:w-[453px]">
         <Link to="/register">
           <button className="flex items-center gap-1.5">
-            <FaArrowLeft/> Back
+            <FaArrowLeft /> Back
           </button>
         </Link>
         <div className="max-w-[332px] mt-4">
@@ -27,7 +28,7 @@ const Verification = () => {
           </h1>
           <p className="text-[#666] text-[16px] font-normal">
             A verification instruction has been sent to your{" "}
-            <span className="font-semibold ml-1">{maskEmail (email)}</span>
+            <span className="font-semibold ml-1">{maskEmail(email)}</span>
           </p>
         </div>
         <button className="btn w-full mt-4 font-semibold">Go to Mail</button>

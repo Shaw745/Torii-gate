@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const registerSchema = Yup.object().shape({
   fullName: Yup.string().required("Name is required"),
   email: Yup.string()
-  .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     .email("Invalid email")
     .required("Email is required"),
   phoneNumber: Yup.string()
@@ -34,4 +34,10 @@ export const propertySchema = Yup.object().shape({
   kitchens: Yup.string().required("Number of kitchens is required"),
   price: Yup.string().required("Price is required"),
   paymentPeriod: Yup.string().required("Payment period is required"),
+});
+
+export const forgotPasswordSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address ")
+    .required("email is required"),
 });
