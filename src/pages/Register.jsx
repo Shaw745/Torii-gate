@@ -9,12 +9,13 @@ import { PiWarningCircle } from "react-icons/pi";
 import { registerSchema } from "../utils/formValidator";
 import { axiosInstance } from "../utils/axiosInstance";
 
+
 const Register = () => {
-  const [role, setRole] = useState ("tenant");
+  const [role, setRole] = useState("tenant");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const redirect = useNavigate();
 
   const {
@@ -24,22 +25,23 @@ const Register = () => {
   } = useForm({ resolver: yupResolver(registerSchema) });
 
   const handleRegister = async (data) => {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
       // console.log("Login Data:", { ...data, role });
-      const response = await axiosInstance.post("/auth/register",{...data,role})
+      const response = await axiosInstance.post("/auth/register", {
+        ...data,
+        role,
+      });
 
-      if(response.status===201){
+      if (response.status === 201) {
         localStorage.setItem("email", data.email);
         redirect("/verification");
       }
-    } 
-    
-    catch (error) {
+    } catch (error) {
       console.log(error);
       setErrorMessage(error?.response?.data?.message);
-    }finally{
-      setIsSubmitting(false)
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

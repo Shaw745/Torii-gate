@@ -1,60 +1,42 @@
 import React from "react";
 import AuthWrapper from "../components/layout/AuthWrapper";
 import { Link } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa6";
-
+import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
 
 const CheckYourEmail = () => {
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
-    const CheckYourEmail = () => {
-        setIsSubmitting(true);
-        // Simulate an API call
-        setTimeout(() => {
-            setIsSubmitting(false);
-        }, 2000);
+  const email = localStorage.getItem("email");
+  const maskEmail = (email) => {
+    const [start, domain] = email.split("@");
+    if ((start, length <= 2)) {
+      return `${start[0]}...@${domain}`;
     }
-    const handleCheckYourEmail = (data) => {
-        setIsSubmitting(true);
-        try {
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        }
-
-    };
+    return `${start.slice(0, 2)}...@${domain}`;
+  };
+ 
   return (
-    <div>
-      <AuthWrapper>
-        <div className="bg-white py-[29px] px-[26px] rounded-lg shadow-lg w-full max-w-[453px] ">
-              <Link to="/register">
-                      <button className="flex items-center gap-1.5 ">
-                        <FaArrowLeft /> Back
-                      </button>
-                    </Link>
-          <div className="max-w-[332px] mt-4">
-            <h1 className="text-2xl lg:text-[30px] font-semibold">
-              Check your email
-            </h1>
-            <p className=" text-[#666] text-[16px] font-normal">
-              Check the email address olafarid12@gmail.com for instructions to
-              reset your password.
-            </p>
-            
-            <button
-              type="submit"
-              className=" bg-white text-black btn w-full mt-5 font-semibold"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <span className="loading loading-spinner loading-md text-black"></span>
-              ) : (
-                "Resend Mail"
-              )}
-            </button>
-          </div>
+    <AuthWrapper>
+      <div className="bg-white py-[29px] px-[26px] rounded-lg shadow-lg w-full lg:w-[453px]">
+        <Link to="/register">
+          <button className="flex items-center gap-1.5">
+            <FaArrowLeft /> Back
+          </button>
+        </Link>
+        <div className="max-w-[332px] mt-4">
+          <h1 className="text-2xl lg:text-[30px] font-[600] text-[#000000]">
+            Check Your Email
+          </h1>
+          <p className="text-[16px] font-[400] text-[#666666] ">
+            Check the email address{" "}
+            <span className="font-[700]">{maskEmail(email)} </span>
+            instructions to reset your password.
+          </p>
         </div>
-      </AuthWrapper>
-    </div>
+        <Link to="/forgot-password" 
+        className=" text-[#0c0c0c] text-[16px] font-[500] mt-4 flex items-center gap-1.5">
+           Didn't get a link,resend mail </Link>
+      </div>
+    </AuthWrapper>
   );
 };
 
