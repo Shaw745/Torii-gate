@@ -1,14 +1,14 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { axiosInstance } from "../utils/axiosInstance";
 import { useState, useEffect } from "react";
-import icon from "../assets/Layer.png";
 import { BounceLoader } from "react-spinners";
+import icon from "../assets/verify.png";
 import { MdCancel } from "react-icons/md";
 const VerifyEmail = () => {
   const { token } = useParams();
   const [errorMsg, setErrorMsg] = useState("");
   const [status, setStatus] = useState("verifying");
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const handleResendEmail = async () => {
     try {
