@@ -43,7 +43,8 @@ const ForgotPassword = () => {
           </p>
         </div>
         <form className="mt-4" onSubmit={handleSubmit(handleForgotPassword)}>
-          <label htmlFor="email" className="mt-6 font-bold text-[16px] ">
+          <label htmlFor="email" className="mt-6 font-bold text-[16px] mb-1.5
+           ">
             {" "}
             Email
           </label>
