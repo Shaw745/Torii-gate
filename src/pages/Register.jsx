@@ -133,7 +133,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* Phone */}
         <div className="mt-5">
           <label
             htmlFor="phone"

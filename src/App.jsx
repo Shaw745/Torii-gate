@@ -20,6 +20,7 @@ const Error404 = lazy(() => import("./pages/Error404"));
 const Verification = lazy(() => import("./pages/Verification"));
 const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 const CheckYourEmail = lazy(() => import("./pages/CheckYourEmail"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 import VerifyEmail from "./pages/VerifyEmail";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -29,7 +30,9 @@ function App() {
       <Suspense fallback={<SuspenseLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route element={<ProtectedRoute allowedRoles={["tenant", "landlord"]} />}>
+          <Route
+            element={<ProtectedRoute allowedRoles={["tenant", "landlord"]} />}
+          >
             <Route path="/home" element={<HomeLoggedIn />} />
             <Route path="/property/:propertyId" element={<PropertyDetail />} />
           </Route>
@@ -40,6 +43,7 @@ function App() {
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/check-email" element={<CheckYourEmail />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           <Route element={<ProtectedRoute allowedRoles={["landlord"]} />}>
             <Route path="/dashboard" element={<DashboardLayout />}>
