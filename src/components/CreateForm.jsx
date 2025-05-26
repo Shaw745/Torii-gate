@@ -15,7 +15,7 @@ const CreateForm = () => {
   } = useForm({
     resolver: yupResolver(propertySchema),
   });
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [imagePreviews, setImagePreviews] = useState(Array(6).fill(null));
   const [images, setImages] = useState(Array(6).fill(null)); // will store actual File objects
 
