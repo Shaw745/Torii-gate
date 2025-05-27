@@ -1,9 +1,10 @@
+
 import * as Yup from "yup";
 
 export const registerSchema = Yup.object().shape({
   fullName: Yup.string().required("Name is required"),
   email: Yup.string()
-    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email")
     .email("Invalid email")
     .required("Email is required"),
   phoneNumber: Yup.string()
@@ -25,21 +26,21 @@ export const loginSchema = Yup.object().shape({
 });
 
 export const propertySchema = Yup.object().shape({
-  propertyName: Yup.string().required("Property name is required"),
+  title: Yup.string().required("Property name is required"),
   description: Yup.string().required("Description is required"),
   location: Yup.string().required("Location is required"),
-  rooms: Yup.string().required("Number of rooms is required"),
-  livingRooms: Yup.string().required("Number of living rooms is required"),
-  toilets: Yup.string().required("Number of toilets is required"),
-  kitchens: Yup.string().required("Number of kitchens is required"),
+  bedroom: Yup.string().required("Number of rooms is required"),
+  livingRoom: Yup.string().required("Number of living rooms is required"),
+  toilet: Yup.string().required("Number of toilets is required"),
+  kitchen: Yup.string().required("Number of kitchens is required"),
   price: Yup.string().required("Price is required"),
-  paymentPeriod: Yup.string().required("Payment period is required"),
+  paymentPeriod: Yup.string().required("Payment period is required"),
 });
 
 export const forgotPasswordSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email address ")
-    .required("email is required"),
+    .email("Invalid email address")
+    .required("Email is required"),
 });
 
 export const resetPasswordSchema = Yup.object().shape({
