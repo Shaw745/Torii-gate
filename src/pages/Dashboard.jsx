@@ -7,6 +7,8 @@ import SuspenseLoader from "../components/SuspenseLoader";
 import { axiosInstance } from "../utils/axiosInstance";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../hooks/useAppContext";
+import  EmptyLandlord from "../components/EmptyLandlord";
+
 
 const Dashboard = () => {
   const { token } = useAppContext();
@@ -40,9 +42,11 @@ const Dashboard = () => {
   if (isLoading) {
     return <SuspenseLoader />;
   }
-  if (!isLoading && total === 0) {
-    return <div>No Properties Found</div>;
+  if (!isLoading && total === 0)
+    {
+  return <EmptyLandlord />;
   }
+  
 
   return (
     <section className="max-w-[1157px]">

@@ -34,8 +34,8 @@ const AdminProperty = () => {
         setTotalPages(data.totalPages),
         setTotal(data.total);
       setAvailability({
-        availableCount: data.availableProperties || data.availableCount || 0,
-        rentedCount: data.rentedProperties || data.rentedCount || 0,
+        available: data.availableProperties || data.available || 0,
+        rented: data.rentedProperties || data.rented || 0,
       });
 
       setIsLoading(false); // fetch properties
