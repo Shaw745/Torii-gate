@@ -3,16 +3,18 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAppContext } from "../hooks/useAppContext";
 import SuspenseLoader from "./SuspenseLoader";
 
-const getUser = () => {
-  const user = JSON.parse(localStorage.getItem("user")); // adjust to your auth logic
-  return user;
-};
+// const getUser = () => {
+//   const user = JSON.parse(localStorage.getItem("user")); // adjust to your auth logic
+//   return user;
+// };
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const { loading, user } = useAppContext();
+  // const user = getUser();
   if (loading) {
     return <SuspenseLoader />;
   }
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }

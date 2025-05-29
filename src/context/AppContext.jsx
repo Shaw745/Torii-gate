@@ -1,17 +1,16 @@
-import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const appContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [Loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  //check if user is logged in already
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("accessToken");
-
+    const storedUser = localStorage.getItem("user");
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
@@ -26,24 +25,26 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
   };
   const logout = () => {
-    setUser(null);
     setToken(null);
+    setUser(null);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
   };
-
   const updateUser = (updatedUser) => {
     setUser(updatedUser);
     localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
+  // login - email, password, role
+  // setToken() setUser()
   return (
     <appContext.Provider
-      value={{ login, logout, user, token, Loading, updateUser }}
+      value={{ login, logout, user, token, loading, updateUser }}
     >
       {children}
     </appContext.Provider>
   );
 };
+// useContext()
 
 export default AppProvider;
