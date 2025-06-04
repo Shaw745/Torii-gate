@@ -7,10 +7,12 @@ import SuspenseLoader from "../components/SuspenseLoader";
 import { axiosInstance } from "../utils/axiosInstance";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../hooks/useAppContext";
-import  EmptyLandlord from "../components/EmptyLandlord";
-
+import EmptyLandlord from "../components/EmptyLandlord";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const redirect = useNavigate();
   const { token } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -20,18 +22,23 @@ const Dashboard = () => {
 
   const fetchProperties = async () => {
     try {
-      const { data } = await axiosInstance.get(
+      const response = await axiosInstance.get(
         `/property/landlord?page=${page}`,
         {
           headers: { Authorization: `Bearer ${token} ` },
         }
       );
-      console.log(data);
+
+      const { data } = response;
       setProperties(data.properties),
         setPage(data.currentPage),
         setTotalPages(data.totalPages),
         setTotal(data.total),
         setIsLoading(false); // fetch properties
+      if (response.status === 401) {
+        toast.warning(" session expired, please login again");
+        redirect("/login");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -42,11 +49,9 @@ const Dashboard = () => {
   if (isLoading) {
     return <SuspenseLoader />;
   }
-  if (!isLoading && total === 0)
-    {
-  return <EmptyLandlord />;
+  if (!isLoading && total === 0) {
+    return <EmptyLandlord />;
   }
-  
 
   return (
     <section className="max-w-[1157px]">
