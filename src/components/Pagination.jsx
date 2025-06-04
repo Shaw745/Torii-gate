@@ -1,13 +1,13 @@
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
 import { useTenantContext } from "../hooks/useTenantContext";
 
-const Pagination = ({ totalItems = 1000 }) => {
-  const { page, setPage, totalPage, properties, total } = useTenantContext();
+const Pagination = ({ totalItems = 20 }) => {
+  const { page, setPage, totalPage, properties, totalProperties } = useTenantContext();
 
   return (
     <div className="flex items-center justify-between py-4 text-sm text-gray-600 layout">
       <span>
-        Showing {properties.length} of {total}
+        Showing {properties.length} of {totalProperties}
       </span>
 
       <div className="flex items-center space-x-2">
